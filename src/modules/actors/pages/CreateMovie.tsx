@@ -16,6 +16,11 @@ export default function CrearActor() {
   const [releaseDate, setReleaseDate] = useState(new Date().toISOString().split("T")[0]);
   const [popularity, setPopularity] = useState(0);
 
+  const [prizeName, setPrizeName] = useState("");
+  const [category, setCategory] = useState("");
+  const [year, setYear] = useState(2026);
+  const [status, setStatus] = useState("");
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const actor = {
@@ -29,6 +34,8 @@ export default function CrearActor() {
     const movie = {
         title, poster, duration, country, releaseDate, popularity
     };
+
+    const prize = {prizeName, category, year, status};
     
     const res1 = await fetch("http://localhost:3000/api/v1/movies", {
       method: "POST",
@@ -56,6 +63,11 @@ export default function CrearActor() {
     setCountry("");
     setReleaseDate("");
     setPopularity(0);
+
+    setPrizeName("");
+    setCategory("");
+    setYear(2026);
+    setStatus("");
   };
 
   const etiqueta = {
@@ -133,6 +145,23 @@ export default function CrearActor() {
         <div>
           <label style={etiqueta}>Biography</label>
           <textarea value={biography} onChange={(e) => setBiography(e.target.value)} style={inputs}/>
+        </div>
+
+        <h2>Info Prize: </h2>
+
+        <div>
+          <label style={etiqueta}>Prize Name</label>
+          <input type="text" value={prizeName} onChange={(e) => setPrizeName(e.target.value)} style={inputs}/>
+        </div>
+
+        <div>
+          <label style={etiqueta}>Category</label>
+          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} style={inputs}/>
+        </div>
+
+        <div>
+          <label style={etiqueta}>Year</label>
+          <input type="number" value={year} onChange={(e) => setYear(parseFloat(e.target.value))} style={inputs}/>
         </div>
 
         <button type="submit" style={boton}>Crear Actor</button>
