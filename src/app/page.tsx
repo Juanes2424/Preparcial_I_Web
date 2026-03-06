@@ -1,7 +1,7 @@
-import CrearActor from "../modules/actors/pages/CrearActor";
+import CrearPelicula from "../modules/actors/pages/CreateMovie";
 
 export default function Home() {
   return (
-    <CrearActor/>
+    <CrearPelicula/>
   );
 }
